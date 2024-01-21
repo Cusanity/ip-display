@@ -3,7 +3,7 @@ $localIpAddress = $_SERVER['SERVER_ADDR'];
 
 // Function to fetch external IP address with error handling
 function getExternalIpAddress() {
-    $externalIpAddress = @file_get_contents('https://api64.ipify.org?format=json');
+    $externalIpAddress = @file_get_contents('http://api64.ipify.org?format=json');
 
     if ($externalIpAddress === false) {
         // Handle error if unable to fetch external IP

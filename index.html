@@ -4,28 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server IP Address</title>
+    <title>Server IP Addresses</title>
     <script>
-        // Function to fetch and display the server's IP address
-        async function getServerIpAddress() {
+        // Function to fetch and display the server's local and external IP addresses
+        async function getServerIpAddresses() {
             try {
                 const response = await fetch('get_ip.php');
                 const data = await response.json();
-                document.getElementById('ipAddress').innerText = `Server IP Address: ${data.ip}`;
+                document.getElementById('localIpAddress').innerText = `Local IP Address: ${data.localIp}`;
+                document.getElementById('externalIpAddress').innerText = `External IP Address: ${data.externalIp}`;
             } catch (error) {
-                console.error('Error fetching server IP address:', error);
-                document.getElementById('ipAddress').innerText = 'Error fetching server IP address.';
+                console.error('Error fetching server IP addresses:', error);
+                document.getElementById('localIpAddress').innerText = 'Error fetching IP addresses.';
+                document.getElementById('externalIpAddress').innerText = '';
             }
         }
 
-        // Fetch server IP address when the page loads
-        window.onload = getServerIpAddress;
+        // Fetch server IP addresses when the page loads
+        window.onload = getServerIpAddresses;
     </script>
 </head>
 
 <body>
-    <h1>Server IP Address</h1>
-    <p id="ipAddress">Fetching server IP address...</p>
+    <h1>Server IP Addresses</h1>
+    <p id="localIpAddress">Fetching IP addresses...</p>
+    <p id="externalIpAddress"></p>
 </body>
 
 </html>

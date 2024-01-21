@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server IP Address</title>
+    <script>
+        // Function to fetch and display the server's IP address
+        async function getServerIpAddress() {
+            try {
+                const response = await fetch('get_ip.php');
+                const data = await response.json();
+                document.getElementById('ipAddress').innerText = `Server IP Address: ${data.ip}`;
+            } catch (error) {
+                console.error('Error fetching server IP address:', error);
+                document.getElementById('ipAddress').innerText = 'Error fetching server IP address.';
+            }
+        }
+
+        // Fetch server IP address when the page loads
+        window.onload = getServerIpAddress;
+    </script>
+</head>
+
+<body>
+    <h1>Server IP Address</h1>
+    <p id="ipAddress">Fetching server IP address...</p>
+</body>
+
+</html>
